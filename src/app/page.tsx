@@ -104,7 +104,7 @@ export default function HomePage() {
       <SearchBar onSearch={setQuery} />
 
       {/* コンテンツエリア */}
-      <div className="max-w-screen-xl mx-auto w-full px-6 py-8 flex gap-8 flex-1 min-w-0">
+      <div className="max-w-screen-xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8 flex gap-8 flex-1 min-w-0">
         {/* サイドバー */}
         <SiteFilter sites={sites} onToggle={handleToggle} />
 

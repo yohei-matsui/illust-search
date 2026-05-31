@@ -116,7 +116,7 @@ export async function GET(req: NextRequest) {
   url.searchParams.set("gl", "jp");
   if (page > 0) url.searchParams.set("ijn", String(page));
 
-  const res = await fetch(url.toString(), { cache: "no-store" });
+  const res = await fetch(url.toString(), { next: { revalidate: 86400 } });
 
   if (!res.ok) {
     const body = await res.text();

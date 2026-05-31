@@ -32,6 +32,7 @@ function buildInitialSites(): IllustSite[] {
 export default function HomePage() {
   const [query, setQuery] = useState("");
   const [sites, setSites] = useState<IllustSite[]>(buildInitialSites);
+  const [showHowTo, setShowHowTo] = useState(false);
 
   const handleToggle = (siteId: string) => {
     setSites((prev) => {
@@ -84,8 +85,14 @@ export default function HomePage() {
           </div>
           <nav className="hidden sm:flex items-center gap-6 text-xs text-gray-400 font-medium">
             <span className="text-pink-400 font-semibold">横断検索</span>
-            <span className="hover:text-gray-600 cursor-pointer transition-colors">サイト一覧</span>
-            <span className="hover:text-gray-600 cursor-pointer transition-colors">使い方</span>
+            <span
+              className="hover:text-gray-600 cursor-pointer transition-colors"
+              onClick={() => { setQuery(""); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+            >サイト一覧</span>
+            <span
+              className="hover:text-gray-600 cursor-pointer transition-colors"
+              onClick={() => setShowHowTo(true)}
+            >使い方</span>
           </nav>
         </div>
       </header>
@@ -144,6 +151,57 @@ export default function HomePage() {
           )}
         </main>
       </div>
+
+      {/* 使い方モーダル */}
+      {showHowTo && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm px-4"
+          onClick={() => setShowHowTo(false)}
+        >
+          <div
+            className="bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="absolute top-4 right-4 text-gray-300 hover:text-gray-500 transition-colors"
+              onClick={() => setShowHowTo(false)}
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+            <div className="flex items-center gap-2.5 mb-6">
+              <div className="w-8 h-8 rounded-xl bg-pink-500 flex items-center justify-center">
+                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              </div>
+              <h2 className="text-base font-black text-gray-800">ラクポチ イラストの使い方</h2>
+            </div>
+            <ol className="space-y-5">
+              {[
+                { step: "1", title: "キーワードを入力", desc: "検索バーに「ビジネス」「猫」「季節」など探したいイラストのキーワードを入力します。" },
+                { step: "2", title: "サイトを選ぶ", desc: "左のサイドバーで検索対象のサイトをON/OFFできます。設定は次回訪問時にも保持されます。" },
+                { step: "3", title: "画像をクリック", desc: "気に入ったイラストをクリックすると、素材配布元のサイトが新しいタブで開きます。" },
+              ].map(({ step, title, desc }) => (
+                <li key={step} className="flex gap-4">
+                  <span className="w-7 h-7 rounded-full bg-pink-100 text-pink-500 text-xs font-black flex items-center justify-center shrink-0 mt-0.5">{step}</span>
+                  <div>
+                    <p className="text-sm font-bold text-gray-700 mb-1">{title}</p>
+                    <p className="text-xs text-gray-400 leading-relaxed">{desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <button
+              className="mt-8 w-full rounded-full bg-pink-500 hover:bg-pink-600 text-white text-sm font-bold py-3 transition-colors"
+              onClick={() => setShowHowTo(false)}
+            >
+              さっそく使ってみる
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* フッター */}
       <footer className="border-t border-gray-100 bg-white">

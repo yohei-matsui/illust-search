@@ -6,7 +6,6 @@ import SiteFilter from "@/components/SiteFilter";
 import MasonryGrid from "@/components/MasonryGrid";
 import SiteShowcase from "@/components/SiteShowcase";
 import Pagination from "@/components/Pagination";
-import SettingsPanel from "@/components/SettingsPanel";
 import { SITES } from "@/data/dummyData";
 import { IllustSite } from "@/types";
 import { useIllustSearch } from "@/hooks/useIllustSearch";
@@ -34,7 +33,6 @@ export default function HomePage() {
   const [query, setQuery] = useState("");
   const [sites, setSites] = useState<IllustSite[]>(buildInitialSites);
   const [showHowTo, setShowHowTo] = useState(false);
-  const [activeTab, setActiveTab] = useState<"search" | "settings">("search");
 
   const handleToggle = (siteId: string) => {
     setSites((prev) => {
@@ -81,35 +79,16 @@ export default function HomePage() {
             <img src="/favicon.svg" alt="ラクポチ イラスト" className="w-7 h-7" />
             <span className="text-sm font-black text-gray-800 tracking-tight">ラクポチ イラスト</span>
           </div>
-          <nav className="hidden sm:flex items-center gap-1 text-xs font-medium">
-            <button
-              type="button"
-              onClick={() => { setActiveTab("search"); setQuery(""); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-              className={`px-3 py-1.5 rounded-lg transition-colors ${activeTab === "search" ? "bg-pink-100 text-pink-500 font-semibold" : "text-gray-400 hover:text-gray-600 hover:bg-gray-50"}`}
-            >
-              横断検索
-            </button>
-            <button
-              type="button"
-              onClick={() => { setActiveTab("search"); setQuery(""); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-              className="px-3 py-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-50 transition-colors"
-            >
-              サイト一覧
-            </button>
-            <button
-              type="button"
+          <nav className="hidden sm:flex items-center gap-6 text-xs text-gray-400 font-medium">
+            <span className="text-pink-400 font-semibold">横断検索</span>
+            <span
+              className="hover:text-gray-600 cursor-pointer transition-colors"
+              onClick={() => { setQuery(""); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+            >サイト一覧</span>
+            <span
+              className="hover:text-gray-600 cursor-pointer transition-colors"
               onClick={() => setShowHowTo(true)}
-              className="px-3 py-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-50 transition-colors"
-            >
-              使い方
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveTab("settings")}
-              className={`px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1 ${activeTab === "settings" ? "bg-pink-100 text-pink-500 font-semibold" : "text-gray-400 hover:text-gray-600 hover:bg-gray-50"}`}
-            >
-              ⚙️ 設定
-            </button>
+            >使い方</span>
           </nav>
         </div>
       </header>
@@ -119,19 +98,11 @@ export default function HomePage() {
 
       {/* コンテンツエリア */}
       <div className="max-w-screen-xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8 flex gap-8 flex-1 min-w-0">
-        {/* 設定タブのときはサイドバー非表示 */}
-        {activeTab === "search" && (
-          <SiteFilter sites={sites} onToggle={handleToggle} />
-        )}
+        {/* サイドバー */}
+        <SiteFilter sites={sites} onToggle={handleToggle} />
 
         {/* メイン */}
         <main className="flex-1 min-w-0">
-          {/* 設定パネル */}
-          {activeTab === "settings" && <SettingsPanel />}
-
-          {/* 検索コンテンツ */}
-          {activeTab === "search" && (
-          <>
           {/* クエリなし → サイト紹介 */}
           {isIdle ? (
             <SiteShowcase sites={enabledSites} onSearch={setQuery} />
@@ -173,8 +144,6 @@ export default function HomePage() {
                 />
               )}
             </>
-          )}
-          </>
           )}
         </main>
       </div>

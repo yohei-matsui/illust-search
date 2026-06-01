@@ -71,9 +71,9 @@ export default function HomePage() {
   );
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#faf8fb]">
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-pink-100 via-rose-50 to-purple-100" style={{backgroundImage: "radial-gradient(ellipse at 20% 20%, rgba(251,207,232,0.6) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(216,180,254,0.4) 0%, transparent 50%), radial-gradient(ellipse at 60% 10%, rgba(254,205,211,0.5) 0%, transparent 40%)"}}>
       {/* ヘッダー */}
-      <header className="sticky top-0 z-20 bg-white/90 backdrop-blur-md border-b border-gray-100">
+      <header className="sticky top-0 z-20 backdrop-blur-2xl border-b" style={{background: "linear-gradient(135deg, rgba(255,255,255,0.55) 0%, rgba(255,240,245,0.45) 100%)", borderColor: "rgba(255,255,255,0.5)", boxShadow: "0 4px 24px rgba(236,72,153,0.08), inset 0 1px 0 rgba(255,255,255,0.7)"}}>
         <div className="max-w-screen-xl mx-auto px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <div className="w-7 h-7 rounded-xl bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center shadow-sm">
@@ -207,7 +207,7 @@ export default function HomePage() {
       )}
 
       {/* フッター */}
-      <footer className="border-t border-gray-100 bg-white">
+      <footer className="border-t backdrop-blur-xl" style={{background: "linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,240,245,0.4) 100%)", borderColor: "rgba(255,255,255,0.4)"}}>
         <div className="max-w-screen-xl mx-auto px-6 py-6 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-5 h-5 rounded-md bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center">
@@ -220,8 +220,8 @@ export default function HomePage() {
             <span className="text-xs font-bold text-gray-500">ラクポチ イラスト</span>
           </div>
           <div className="flex items-center gap-4">
-            <a href="/privacy" className="text-xs text-gray-300 hover:text-gray-500 transition-colors">プライバシーポリシー</a>
-            <p className="text-xs text-gray-300">© 2026 ラクポチ イラスト</p>
+            <a href="/privacy" className="text-xs text-gray-500 hover:text-gray-700 transition-colors">プライバシーポリシー</a>
+            <p className="text-xs text-gray-500">© 2026 ラクポチ イラスト</p>
           </div>
         </div>
       </footer>

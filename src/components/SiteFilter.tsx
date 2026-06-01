@@ -12,7 +12,7 @@ function FilterContent({ sites, onToggle }: Props) {
   const enabledCount = sites.filter((s) => s.enabled).length;
   return (
     <div className="flex flex-col h-full">
-      <p className="text-[10px] font-bold tracking-[0.18em] text-gray-300 uppercase mb-4 px-1 shrink-0">
+      <p className="text-[10px] font-bold tracking-[0.18em] text-gray-500 uppercase mb-4 px-1 shrink-0">
         検索対象サイト
       </p>
       <ul className="space-y-1 overflow-y-auto pr-1 flex-1 min-h-0">
@@ -68,8 +68,8 @@ export default function SiteFilter({ sites, onToggle }: Props) {
   return (
     <>
       {/* PC: サイドバー */}
-      <aside className="hidden lg:block w-52 shrink-0">
-        <div className="sticky top-24 flex flex-col max-h-[calc(100vh-7rem)]">
+      <aside className="hidden lg:block w-52 shrink-0" style={{}}>
+        <div className="sticky top-24 flex flex-col max-h-[calc(100vh-7rem)] rounded-2xl p-3" style={{background: "linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,245,250,0.4) 100%)", backdropFilter: "blur(20px) saturate(1.8)", border: "1px solid rgba(255,255,255,0.65)", boxShadow: "0 4px 24px rgba(236,72,153,0.06), inset 0 1px 0 rgba(255,255,255,0.8)"}}>
           <FilterContent sites={sites} onToggle={onToggle} />
         </div>
       </aside>
@@ -79,7 +79,8 @@ export default function SiteFilter({ sites, onToggle }: Props) {
         <button
           type="button"
           onClick={() => setDrawerOpen(true)}
-          className="flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white text-sm font-bold px-4 py-3 rounded-full shadow-lg transition-colors"
+          className="flex items-center gap-2 text-white text-sm font-bold px-4 py-3 rounded-full transition-all active:scale-95"
+          style={{background: "linear-gradient(135deg, rgba(249,168,212,0.85) 0%, rgba(236,72,153,0.9) 100%)", backdropFilter: "blur(16px)", boxShadow: "0 8px 32px rgba(236,72,153,0.35), inset 0 1px 0 rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.35)"}}
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
             <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>

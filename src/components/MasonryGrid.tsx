@@ -23,7 +23,7 @@ export default function MasonryGrid({ items, isLoading }: Props) {
       <div className="flex flex-col items-center justify-center py-24 text-center">
         <span className="inline-block w-8 h-8 border-4 border-pink-200 border-t-pink-500 rounded-full animate-spin mb-5" />
         <p className="text-gray-400 text-sm font-medium">検索中...</p>
-        <p className="text-gray-300 text-xs mt-1">複数サイトを横断して探しています</p>
+        <p className="text-gray-500 text-xs mt-1">複数サイトを横断して探しています</p>
       </div>
     );
   }
@@ -35,7 +35,7 @@ export default function MasonryGrid({ items, isLoading }: Props) {
         <p className="text-gray-400 text-sm">
           条件に一致するイラストが見つかりませんでした
         </p>
-        <p className="text-gray-300 text-xs mt-1">
+        <p className="text-gray-500 text-xs mt-1">
           キーワードや対象サイトを変えてみてください
         </p>
       </div>

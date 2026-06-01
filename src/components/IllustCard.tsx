@@ -13,7 +13,8 @@ export default function IllustCard({ item }: Props) {
       href={item.sourceUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="group block w-full rounded-2xl bg-white overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_30px_rgba(236,72,153,0.12)] border border-gray-100/80 transition-all duration-300 hover:-translate-y-1"
+      className="group block w-full rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5"
+      style={{background: "linear-gradient(135deg, rgba(255,255,255,0.65) 0%, rgba(255,245,250,0.55) 100%)", backdropFilter: "blur(20px) saturate(1.8)", border: "1px solid rgba(255,255,255,0.75)", boxShadow: "0 2px 16px rgba(236,72,153,0.07), inset 0 1px 0 rgba(255,255,255,0.9)"}}
     >
       {/* 画像エリア */}
       <div className="relative w-full overflow-hidden bg-pink-50/50">

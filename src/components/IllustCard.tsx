@@ -19,17 +19,6 @@ export default function IllustCard({ item }: Props) {
     }
   };
 
-  const handleDownload = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    window.parent.postMessage({
-      type: "download",
-      imageUrl: item.imageUrl,
-      title: item.title,
-      siteName: item.siteName,
-    }, "*");
-  };
-
   return (
     <a
       href={item.sourceUrl}
@@ -57,22 +46,6 @@ export default function IllustCard({ item }: Props) {
             {item.siteName}
           </span>
         </div>
-        {/* CEP 環境のみ：ダウンロードボタン */}
-        {inFrame && (
-          <button
-            onClick={handleDownload}
-            className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-200 translate-y-1 group-hover:translate-y-0 rounded-full px-2.5 py-1 text-[10px] font-bold text-white flex items-center gap-1 shadow-md"
-            style={{background: "linear-gradient(135deg, rgba(249,168,212,0.95) 0%, rgba(236,72,153,1) 100%)"}}
-            title="ダウンロード"
-          >
-            <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-            保存
-          </button>
-        )}
       </div>
 
       {/* テキストエリア */}

@@ -219,7 +219,10 @@ export default function HomePage() {
             </div>
             <span className="text-xs font-bold text-gray-500">ラクポチ イラスト</span>
           </div>
-          <p className="text-xs text-gray-300">© 2026 — フリーイラスト横断検索（プロトタイプ）</p>
+          <div className="flex items-center gap-4">
+            <a href="/privacy" className="text-xs text-gray-300 hover:text-gray-500 transition-colors">プライバシーポリシー</a>
+            <p className="text-xs text-gray-300">© 2026 ラクポチ イラスト</p>
+          </div>
         </div>
       </footer>
     </div>

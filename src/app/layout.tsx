@@ -4,6 +4,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "フリーイラストをまとめて探す｜ラクポチ イラスト",
   description: "いらすとや・ソコスト・Linustockなど複数のフリーイラストサイトを横断検索できるサービス",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+  },
 };
 
 export default function RootLayout({

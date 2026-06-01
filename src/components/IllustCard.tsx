@@ -10,15 +10,21 @@ type Props = {
 
 export default function IllustCard({ item }: Props) {
   const [inFrame, setInFrame] = useState(false);
-  useEffect(() => {
-    setInFrame(window !== window.top);
-  }, []);
+  useEffect(() => { setInFrame(window !== window.top); }, []);
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (inFrame) {
+      e.preventDefault();
+      window.parent.postMessage({ type: "openTab", url: item.sourceUrl, title: item.title }, "*");
+    }
+  };
 
   return (
     <a
       href={item.sourceUrl}
-      target={inFrame ? "_self" : "_blank"}
+      target="_blank"
       rel="noopener noreferrer"
+      onClick={handleClick}
       className="group block w-full rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5"
       style={{background: "linear-gradient(135deg, rgba(255,255,255,0.65) 0%, rgba(255,245,250,0.55) 100%)", backdropFilter: "blur(20px) saturate(1.8)", border: "1px solid rgba(255,255,255,0.75)", boxShadow: "0 2px 16px rgba(236,72,153,0.07), inset 0 1px 0 rgba(255,255,255,0.9)"}}
     >

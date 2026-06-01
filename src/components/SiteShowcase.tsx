@@ -77,8 +77,14 @@ function SiteGroup({
           <a
             key={site.id}
             href={site.url}
-            target={inFrame ? "_self" : "_blank"}
+            target="_blank"
             rel="noopener noreferrer"
+            onClick={(e) => {
+              if (inFrame) {
+                e.preventDefault();
+                window.parent.postMessage({ type: "openTab", url: site.url, title: site.name }, "*");
+              }
+            }}
             className="group flex flex-col gap-3 rounded-2xl p-4 hover:-translate-y-1 transition-all duration-300"
             style={{background: "linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(255,245,250,0.5) 100%)", backdropFilter: "blur(20px) saturate(1.8)", border: "1px solid rgba(255,255,255,0.7)", boxShadow: "0 4px 24px rgba(236,72,153,0.06), inset 0 1px 0 rgba(255,255,255,0.9)"}}
           >

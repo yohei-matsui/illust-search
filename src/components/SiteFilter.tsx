@@ -21,7 +21,7 @@ function FilterContent({ sites, onToggle }: Props) {
             <button
               type="button"
               onClick={() => onToggle(site.id)}
-              className={`w-full flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg text-left transition-all ${
+              className={`w-full flex items-center justify-between gap-2 px-3 py-2.5 rounded-lg text-left transition-all overflow-hidden ${
                 site.enabled
                   ? "bg-white shadow-sm border border-pink-100 text-gray-700"
                   : "text-gray-400 hover:bg-white/60"

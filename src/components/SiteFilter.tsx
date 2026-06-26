@@ -69,7 +69,7 @@ export default function SiteFilter({ sites, onToggle }: Props) {
     <>
       {/* PC: サイドバー */}
       <aside className="hidden lg:block w-52 shrink-0" style={{}}>
-        <div className="sticky top-24 flex flex-col max-h-[calc(100vh-7rem)] rounded-2xl p-3" style={{background: "linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,245,250,0.4) 100%)", backdropFilter: "blur(20px) saturate(1.8)", border: "1px solid rgba(255,255,255,0.65)", boxShadow: "0 4px 24px rgba(236,72,153,0.06), inset 0 1px 0 rgba(255,255,255,0.8)"}}>
+        <div className="sticky top-24 flex flex-col h-[calc(100vh-7rem)] rounded-2xl p-3 overflow-hidden" style={{background: "linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,245,250,0.4) 100%)", backdropFilter: "blur(20px) saturate(1.8)", border: "1px solid rgba(255,255,255,0.65)", boxShadow: "0 4px 24px rgba(236,72,153,0.06), inset 0 1px 0 rgba(255,255,255,0.8)"}}>
           <FilterContent sites={sites} onToggle={onToggle} />
         </div>
       </aside>

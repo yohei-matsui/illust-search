@@ -101,7 +101,7 @@ export default function SiteFilter({ sites, onToggle }: Props) {
             onClick={() => setDrawerOpen(false)}
           />
           {/* パネル */}
-          <div className="w-72 bg-[#faf8fb] flex flex-col p-5 shadow-2xl">
+          <div className="w-72 bg-[#faf8fb] flex flex-col p-5 shadow-2xl h-screen overflow-hidden">
             <div className="flex items-center justify-between mb-4 shrink-0">
               <p className="text-sm font-black text-gray-700">検索対象サイト</p>
               <button

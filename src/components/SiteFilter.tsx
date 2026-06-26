@@ -27,7 +27,7 @@ function FilterContent({ sites, onToggle }: Props) {
                   : "text-gray-400 hover:bg-white/60"
               }`}
             >
-              <span className="text-xs font-medium leading-snug">{site.name}</span>
+              <span className="text-xs font-medium truncate min-w-0">{site.name}</span>
               <span
                 className={`relative inline-flex shrink-0 items-center rounded-full transition-colors ${
                   site.enabled ? "bg-pink-400" : "bg-gray-200"

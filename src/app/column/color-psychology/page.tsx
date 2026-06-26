@@ -227,7 +227,7 @@ export default function ColorPsychologyPage() {
           </div>
           <div
             className="divide-y"
-            style={{ background: "rgba(255,255,255,0.65)", divideColor: "rgba(0,0,0,0.05)" }}
+            style={{ background: "rgba(255,255,255,0.65)" }}
           >
             {COLOR_RELATIONS.map((item) => (
               <div key={item.color} className="flex items-center gap-4 px-5 py-3">

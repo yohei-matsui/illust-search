@@ -81,6 +81,10 @@ export default function HomePage() {
           </div>
           <nav className="hidden sm:flex items-center gap-6 text-xs text-gray-400 font-medium">
             <span className="text-pink-400 font-semibold">横断検索</span>
+            <a
+              href="/column"
+              className="hover:text-gray-600 transition-colors"
+            >デザインコラム</a>
             <span
               className="hover:text-gray-600 cursor-pointer transition-colors"
               onClick={() => { setQuery(""); window.scrollTo({ top: 0, behavior: "smooth" }); }}

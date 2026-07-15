@@ -106,9 +106,9 @@ export default function TypographyTipsPage() {
             <span className="text-sm font-black text-gray-800 tracking-tight">ラクポチ イラスト</span>
           </Link>
           <nav className="hidden sm:flex items-center gap-6 text-xs text-gray-400 font-medium">
-            <Link href="/" className="hover:text-gray-600 transition-colors">横断検索</Link>
-            <Link href="/column" className="text-pink-400 font-semibold">デザインコラム</Link>
-            <Link href="/#sites" className="hover:text-gray-600 transition-colors">サイト一覧</Link>
+            <Link href="/search" className="hover:text-gray-600 transition-colors">横断検索</Link>
+            <Link href="/" className="text-pink-400 font-semibold">デザインコラム</Link>
+            <Link href="/search#sites" className="hover:text-gray-600 transition-colors">サイト一覧</Link>
           </nav>
         </div>
       </header>
@@ -118,7 +118,7 @@ export default function TypographyTipsPage() {
         <div className="flex items-center gap-1.5 text-[11px] text-gray-400">
           <Link href="/" className="hover:text-gray-600 transition-colors">ホーム</Link>
           <span className="text-gray-300">/</span>
-          <Link href="/column" className="hover:text-gray-600 transition-colors">デザインコラム</Link>
+          <Link href="/" className="hover:text-gray-600 transition-colors">デザインコラム</Link>
           <span className="text-gray-300">/</span>
           <span className="text-gray-500">プロっぽいテロップにする小技</span>
         </div>
@@ -299,7 +299,7 @@ export default function TypographyTipsPage() {
         {/* 戻るボタン */}
         <div className="flex justify-center mb-12">
           <Link
-            href="/column"
+            href="/"
             className="flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-pink-500 transition-all hover:bg-pink-50"
             style={{ border: "1.5px solid rgba(236,72,153,0.3)" }}
           >

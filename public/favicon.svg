@@ -1,74 +1,66 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <!-- メイン背景グラデーション -->
-    <linearGradient id="bgGrad" x1="10%" y1="0%" x2="90%" y2="100%">
-      <stop offset="0%" style="stop-color:#f9a8d4"/>
-      <stop offset="40%" style="stop-color:#ec4899"/>
-      <stop offset="100%" style="stop-color:#9d174d"/>
+    <!-- 背景グラデーション（やや暗め） -->
+    <linearGradient id="bgGrad" x1="30%" y1="0%" x2="70%" y2="100%">
+      <stop offset="0%" style="stop-color:#3a3a3a"/>
+      <stop offset="100%" style="stop-color:#1a1a1a"/>
     </linearGradient>
-    <!-- 上部ハイライトグラデーション（光の反射） -->
-    <linearGradient id="shine" x1="0%" y1="0%" x2="30%" y2="100%">
-      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.45"/>
-      <stop offset="60%" style="stop-color:#ffffff;stop-opacity:0.08"/>
+    <!-- ボタン面グラデーション（中央が明るい） -->
+    <radialGradient id="btnGrad" cx="42%" cy="35%" r="60%">
+      <stop offset="0%" style="stop-color:#6a6a6a"/>
+      <stop offset="60%" style="stop-color:#4a4a4a"/>
+      <stop offset="100%" style="stop-color:#2e2e2e"/>
+    </radialGradient>
+    <!-- ハイライト（ボタン上部の光沢） -->
+    <radialGradient id="shine" cx="38%" cy="25%" r="55%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.22"/>
       <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0"/>
-    </linearGradient>
-    <!-- 鉛筆本体グラデーション -->
-    <linearGradient id="pencilBody" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.7"/>
-      <stop offset="35%" style="stop-color:#ffffff;stop-opacity:1"/>
-      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.82"/>
-    </linearGradient>
-    <!-- 鉛筆の木部グラデーション -->
-    <linearGradient id="woodGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#fde68a;stop-opacity:0.9"/>
-      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:0.85"/>
-    </linearGradient>
-    <!-- 全体ドロップシャドウ -->
-    <filter id="outerShadow" x="-15%" y="-5%" width="130%" height="130%">
-      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#831843" flood-opacity="0.55"/>
+    </radialGradient>
+    <!-- 中央ドット（押すポイント） -->
+    <radialGradient id="dotGrad" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.95"/>
+      <stop offset="100%" style="stop-color:#d0d0d0;stop-opacity:0.85"/>
+    </radialGradient>
+    <!-- ドロップシャドウ -->
+    <filter id="outerShadow" x="-12%" y="-8%" width="124%" height="130%">
+      <feDropShadow dx="0" dy="14" stdDeviation="20" flood-color="#000000" flood-opacity="0.5"/>
     </filter>
-    <!-- 鉛筆シャドウ -->
-    <filter id="pencilShadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="4" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.2"/>
+    <!-- ボタンの押し込み感（内側シャドウっぽく） -->
+    <filter id="btnShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+    <!-- リング用フィルタ -->
+    <filter id="ringShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.3"/>
     </filter>
   </defs>
 
-  <!-- ===== 背面の奥行きレイヤー（Google アイコン風の積層感） ===== -->
-  <rect x="38" y="52" width="440" height="440" rx="90" fill="#831843" opacity="0.35"/>
-  <rect x="28" y="36" width="448" height="448" rx="94" fill="#be185d" opacity="0.55"/>
+  <!-- ===== 外枠（丸角四角） ===== -->
+  <!-- 奥行き感のためのレイヤー -->
+  <rect x="36" y="44" width="440" height="440" rx="98" fill="#0a0a0a" opacity="0.5"/>
+  <!-- メイン背景 -->
+  <rect x="22" y="22" width="468" height="468" rx="100" fill="url(#bgGrad)" filter="url(#outerShadow)"/>
 
-  <!-- ===== メイン背景 ===== -->
-  <rect x="18" y="18" width="460" height="460" rx="98" fill="url(#bgGrad)" filter="url(#outerShadow)"/>
+  <!-- ===== ボタンのベースリング（立体感） ===== -->
+  <!-- 外リング（暗め）：押し込みの縁 -->
+  <circle cx="256" cy="262" r="164" fill="#111111" filter="url(#ringShadow)"/>
+  <!-- 内リング（少し明るい縁） -->
+  <circle cx="256" cy="256" r="160" fill="#2c2c2c"/>
 
-  <!-- ===== 光沢ハイライト（上半分だけ） ===== -->
-  <clipPath id="topHalf">
-    <rect x="18" y="18" width="460" height="230" rx="98"/>
-  </clipPath>
-  <rect x="18" y="18" width="460" height="460" rx="98" fill="url(#shine)" clip-path="url(#topHalf)"/>
+  <!-- ===== ボタン本体 ===== -->
+  <circle cx="256" cy="252" r="138" fill="url(#btnGrad)" filter="url(#btnShadow)"/>
+  <!-- 光沢ハイライト -->
+  <circle cx="256" cy="252" r="138" fill="url(#shine)"/>
 
-  <!-- ===== 鉛筆アイコン（大きく・明確に） ===== -->
-  <g transform="translate(256,258) rotate(45)" filter="url(#pencilShadow)">
-    <!-- 消しゴム（ピンク寄りの白、角丸） -->
-    <rect x="-33" y="-192" width="66" height="42" rx="14" fill="rgba(255,255,255,0.8)"/>
+  <!-- ===== 中央の「ポチ」ドット ===== -->
+  <!-- 外リング（白い枠） -->
+  <circle cx="256" cy="252" r="46" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="3"/>
+  <!-- ドット本体 -->
+  <circle cx="256" cy="252" r="38" fill="url(#dotGrad)"/>
+  <!-- ドットハイライト -->
+  <circle cx="243" cy="239" r="10" fill="rgba(255,255,255,0.4)"/>
 
-    <!-- 金属バンド -->
-    <rect x="-33" y="-153" width="66" height="18" rx="5" fill="rgba(255,255,255,0.5)"/>
-
-    <!-- 鉛筆本体（白・左側に明るい面を表現） -->
-    <rect x="-31" y="-135" width="62" height="224" rx="10" fill="url(#pencilBody)"/>
-    <!-- 本体左面ハイライト -->
-    <rect x="-31" y="-135" width="22" height="224" rx="10" fill="rgba(255,255,255,0.35)"/>
-    <!-- 本体右面シャドウ -->
-    <rect x="16" y="-135" width="15" height="224" rx="0" fill="rgba(200,200,220,0.25)"/>
-
-    <!-- 木の部分（台形） -->
-    <polygon points="-31,89 31,89 22,140 -22,140" fill="url(#woodGrad)"/>
-    <!-- 木の左面ハイライト -->
-    <polygon points="-31,89 -9,89 -16,140 -22,140" fill="rgba(255,255,255,0.4)"/>
-
-    <!-- 芯の先端（白） -->
-    <polygon points="-22,140 22,140 0,196" fill="rgba(255,255,255,0.95)"/>
-    <!-- 芯のハイライト -->
-    <polygon points="-22,140 -4,140 0,196" fill="rgba(255,255,255,0.5)"/>
-  </g>
+  <!-- ===== 外枠の光沢ライン（上辺） ===== -->
+  <rect x="22" y="22" width="468" height="468" rx="100"
+    fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
 </svg>

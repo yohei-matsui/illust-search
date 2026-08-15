@@ -88,10 +88,11 @@ export default function SearchApp({ config }: { config: SearchAppConfig }) {
 
   return (
     <div
-      className="flex flex-col min-h-screen bg-gradient-to-br from-pink-100 via-rose-50 to-purple-100"
+      className="flex flex-col min-h-screen"
       style={{
+        backgroundColor: "var(--brand-50)",
         backgroundImage:
-          "radial-gradient(ellipse at 20% 20%, rgba(251,207,232,0.6) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(216,180,254,0.4) 0%, transparent 50%), radial-gradient(ellipse at 60% 10%, rgba(254,205,211,0.5) 0%, transparent 40%)",
+          "radial-gradient(ellipse at 20% 20%, rgba(var(--brand-tint-rgb),0.6) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(var(--brand-tint2-rgb),0.4) 0%, transparent 50%), radial-gradient(ellipse at 60% 10%, rgba(var(--brand-tint3-rgb),0.5) 0%, transparent 40%)",
       }}
     >
       <SiteNav current={config.navKey} />
@@ -116,7 +117,7 @@ export default function SearchApp({ config }: { config: SearchAppConfig }) {
                 <button
                   type="button"
                   onClick={() => setShowHowTo(true)}
-                  className="text-xs text-gray-400 hover:text-pink-500 transition-colors"
+                  className="text-xs text-gray-400 hover:text-[color:var(--brand-500)] transition-colors"
                 >
                   使い方を見る
                 </button>
@@ -129,7 +130,7 @@ export default function SearchApp({ config }: { config: SearchAppConfig }) {
                 <div className="h-px flex-1 bg-gray-100" />
                 <div className="flex items-center gap-2 shrink-0">
                   {isLoading && (
-                    <span className="inline-block w-3.5 h-3.5 border-2 border-pink-300 border-t-pink-500 rounded-full animate-spin" />
+                    <span className="inline-block w-3.5 h-3.5 border-2 border-[color:var(--brand-300)] border-t-[color:var(--brand-500)] rounded-full animate-spin" />
                   )}
                   <p className="text-xs text-gray-400">
                     {isLoading ? (
@@ -138,7 +139,7 @@ export default function SearchApp({ config }: { config: SearchAppConfig }) {
                       <span className="text-red-400">{(state as { message: string }).message}</span>
                     ) : (
                       <>
-                        <span className="font-semibold text-pink-500">「{query}」</span>
+                        <span className="font-semibold text-[color:var(--brand-500)]">「{query}」</span>
                         {" — "}
                         {displayItems.length} 件
                         {fromApi && (
@@ -187,7 +188,7 @@ export default function SearchApp({ config }: { config: SearchAppConfig }) {
             <ol className="space-y-5">
               {config.howTo.map(({ step, title, desc }) => (
                 <li key={step} className="flex gap-4">
-                  <span className="w-7 h-7 rounded-full bg-pink-100 text-pink-500 text-xs font-black flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="w-7 h-7 rounded-full bg-[color:var(--brand-100)] text-[color:var(--brand-500)] text-xs font-black flex items-center justify-center shrink-0 mt-0.5">
                     {step}
                   </span>
                   <div>
@@ -198,7 +199,7 @@ export default function SearchApp({ config }: { config: SearchAppConfig }) {
               ))}
             </ol>
             <button
-              className="mt-8 w-full rounded-full bg-pink-500 hover:bg-pink-600 text-white text-sm font-bold py-3 transition-colors"
+              className="mt-8 w-full rounded-full bg-[color:var(--brand-500)] hover:bg-[color:var(--brand-600)] text-white text-sm font-bold py-3 transition-colors"
               onClick={() => setShowHowTo(false)}
             >
               さっそく使ってみる
@@ -210,7 +211,7 @@ export default function SearchApp({ config }: { config: SearchAppConfig }) {
       <footer
         className="border-t backdrop-blur-xl"
         style={{
-          background: "linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,240,245,0.4) 100%)",
+          background: "linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(var(--brand-surface),0.4) 100%)",
           borderColor: "rgba(255,255,255,0.4)",
         }}
       >

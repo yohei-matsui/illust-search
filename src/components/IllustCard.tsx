@@ -26,10 +26,10 @@ export default function IllustCard({ item }: Props) {
       rel="noopener noreferrer"
       onClick={handleClick}
       className="group block w-full rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5"
-      style={{background: "linear-gradient(135deg, rgba(255,255,255,0.65) 0%, rgba(255,245,250,0.55) 100%)", backdropFilter: "blur(20px) saturate(1.8)", border: "1px solid rgba(255,255,255,0.75)", boxShadow: "0 2px 16px rgba(236,72,153,0.07), inset 0 1px 0 rgba(255,255,255,0.9)"}}
+      style={{background: "linear-gradient(135deg, rgba(255,255,255,0.65) 0%, rgba(var(--brand-surface),0.55) 100%)", backdropFilter: "blur(20px) saturate(1.8)", border: "1px solid rgba(255,255,255,0.75)", boxShadow: "0 2px 16px rgba(var(--brand-rgb),0.07), inset 0 1px 0 rgba(255,255,255,0.9)"}}
     >
       {/* 画像エリア */}
-      <div className="relative w-full overflow-hidden bg-pink-50/50">
+      <div className="relative w-full overflow-hidden bg-[color:var(--brand-50)]">
         <Image
           src={item.imageUrl}
           alt={item.title}
@@ -58,14 +58,14 @@ export default function IllustCard({ item }: Props) {
             {item.tags.slice(0, 2).map((tag) => (
               <span
                 key={tag}
-                className="rounded-md bg-pink-50 px-2 py-0.5 text-[10px] font-medium text-pink-400"
+                className="rounded-md bg-[color:var(--brand-50)] px-2 py-0.5 text-[10px] font-medium text-[color:var(--brand-400)]"
               >
                 {tag}
               </span>
             ))}
           </div>
           <svg
-            className="w-3.5 h-3.5 text-gray-200 group-hover:text-pink-300 shrink-0 transition-colors"
+            className="w-3.5 h-3.5 text-gray-200 group-hover:text-[color:var(--brand-300)] shrink-0 transition-colors"
             fill="none" stroke="currentColor" strokeWidth="2"
             viewBox="0 0 24 24"
           >

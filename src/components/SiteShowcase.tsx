@@ -120,7 +120,7 @@ function SiteGroup({
               }
             }}
             className="group flex flex-col gap-3 rounded-2xl p-4 hover:-translate-y-1 transition-all duration-300"
-            style={{background: "linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(255,245,250,0.5) 100%)", backdropFilter: "blur(20px) saturate(1.8)", border: "1px solid rgba(255,255,255,0.7)", boxShadow: "0 4px 24px rgba(236,72,153,0.06), inset 0 1px 0 rgba(255,255,255,0.9)"}}
+            style={{background: "linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(var(--brand-surface),0.5) 100%)", backdropFilter: "blur(20px) saturate(1.8)", border: "1px solid rgba(255,255,255,0.7)", boxShadow: "0 4px 24px rgba(var(--brand-rgb),0.06), inset 0 1px 0 rgba(255,255,255,0.9)"}}
           >
             <div className="flex items-center gap-3">
               <SiteInitial site={site} />
@@ -128,7 +128,7 @@ function SiteGroup({
                 <p className="text-sm font-bold text-gray-800 truncate">{site.name}</p>
                 <p className="text-[10px] text-gray-500 truncate">{site.url.replace(/https?:\/\//, "").replace(/\/$/, "")}</p>
               </div>
-              <svg className="w-3.5 h-3.5 text-gray-200 group-hover:text-pink-300 shrink-0 ml-auto transition-colors" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 text-gray-200 group-hover:text-[color:var(--brand-300)] shrink-0 ml-auto transition-colors" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
               </svg>
             </div>
@@ -139,7 +139,7 @@ function SiteGroup({
                   key={tag}
                   type="button"
                   onClick={(e) => { e.preventDefault(); onSearch(tag); }}
-                  className="rounded-full bg-pink-50 hover:bg-pink-100 px-2 py-0.5 text-[10px] font-medium text-pink-400 transition-colors"
+                  className="rounded-full bg-[color:var(--brand-50)] hover:bg-[color:var(--brand-100)] px-2 py-0.5 text-[10px] font-medium text-[color:var(--brand-400)] transition-colors"
                 >
                   {tag}
                 </button>

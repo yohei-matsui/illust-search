@@ -23,14 +23,14 @@ function FilterContent({ sites, onToggle }: Props) {
               onClick={() => onToggle(site.id)}
               className={`w-full flex items-center justify-between gap-2 px-3 py-2.5 rounded-lg text-left transition-all overflow-hidden ${
                 site.enabled
-                  ? "bg-white shadow-sm border border-pink-100 text-gray-700"
+                  ? "bg-white shadow-sm border border-[color:var(--brand-100)] text-gray-700"
                   : "text-gray-400 hover:bg-white/60"
               }`}
             >
               <span className="text-xs font-medium truncate min-w-0">{site.name}</span>
               <span
                 className={`relative inline-flex shrink-0 items-center rounded-full transition-colors ${
-                  site.enabled ? "bg-pink-400" : "bg-gray-200"
+                  site.enabled ? "bg-[color:var(--brand-400)]" : "bg-gray-200"
                 }`}
                 style={{ height: "18px", width: "32px" }}
               >
@@ -51,7 +51,7 @@ function FilterContent({ sites, onToggle }: Props) {
           <button
             type="button"
             onClick={() => sites.forEach((s) => !s.enabled && onToggle(s.id))}
-            className="text-pink-400 hover:text-pink-600 font-medium transition-colors"
+            className="text-[color:var(--brand-400)] hover:text-[color:var(--brand-600)] font-medium transition-colors"
           >
             すべて選択
           </button>
@@ -69,7 +69,7 @@ export default function SiteFilter({ sites, onToggle }: Props) {
     <>
       {/* PC: サイドバー */}
       <aside className="hidden lg:block w-52 shrink-0" style={{}}>
-        <div className="sticky top-24 flex flex-col h-[calc(100vh-7rem)] rounded-2xl p-3 overflow-hidden" style={{background: "linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,245,250,0.4) 100%)", backdropFilter: "blur(20px) saturate(1.8)", border: "1px solid rgba(255,255,255,0.65)", boxShadow: "0 4px 24px rgba(236,72,153,0.06), inset 0 1px 0 rgba(255,255,255,0.8)"}}>
+        <div className="sticky top-24 flex flex-col h-[calc(100vh-7rem)] rounded-2xl p-3 overflow-hidden" style={{background: "linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(var(--brand-surface),0.4) 100%)", backdropFilter: "blur(20px) saturate(1.8)", border: "1px solid rgba(255,255,255,0.65)", boxShadow: "0 4px 24px rgba(var(--brand-rgb),0.06), inset 0 1px 0 rgba(255,255,255,0.8)"}}>
           <FilterContent sites={sites} onToggle={onToggle} />
         </div>
       </aside>
@@ -80,13 +80,13 @@ export default function SiteFilter({ sites, onToggle }: Props) {
           type="button"
           onClick={() => setDrawerOpen(true)}
           className="flex items-center gap-2 text-white text-sm font-bold px-4 py-3 rounded-full transition-all active:scale-95"
-          style={{background: "linear-gradient(135deg, rgba(249,168,212,0.85) 0%, rgba(236,72,153,0.9) 100%)", backdropFilter: "blur(16px)", boxShadow: "0 8px 32px rgba(236,72,153,0.35), inset 0 1px 0 rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.35)"}}
+          style={{background: "linear-gradient(135deg, rgba(var(--brand-soft-rgb),0.85) 0%, rgba(var(--brand-rgb),0.9) 100%)", backdropFilter: "blur(16px)", boxShadow: "0 8px 32px rgba(var(--brand-rgb),0.35), inset 0 1px 0 rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.35)"}}
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
             <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
           </svg>
           サイト選択
-          <span className="bg-white text-pink-500 text-xs font-black rounded-full w-5 h-5 flex items-center justify-center">
+          <span className="bg-white text-[color:var(--brand-500)] text-xs font-black rounded-full w-5 h-5 flex items-center justify-center">
             {enabledCount}
           </span>
         </button>

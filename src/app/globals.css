@@ -1,5 +1,47 @@
 @import "tailwindcss";
 
+/* ─────────────────────────────────────────────
+   テーマトークン
+   既定はピンク（イラスト・コラム）。
+   .theme-sky を祖先に付けると水色（画像・映像）になる。
+   ───────────────────────────────────────────── */
+:root {
+  --brand-50:  #fdf2f8;
+  --brand-100: #fce7f3;
+  --brand-200: #fbcfe8;
+  --brand-300: #f9a8d4;
+  --brand-400: #f472b6;
+  --brand-500: #ec4899;
+  --brand-600: #db2777;
+
+  /* rgba() に差し込む用（カンマ区切りのまま持つ） */
+  --brand-rgb:       236, 72, 153;  /* 影・グロー */
+  --brand-soft-rgb:  249, 168, 212; /* グラデーション明るい側 */
+  --brand-deep-rgb:  219, 39, 119;  /* グラデーション暗い側 */
+  --brand-tint-rgb:  251, 207, 232; /* 背景の装飾サークル1 */
+  --brand-tint2-rgb: 216, 180, 254; /* 背景の装飾サークル2 */
+  --brand-tint3-rgb: 254, 205, 211; /* 背景の装飾サークル3 */
+  --brand-surface:   255, 245, 250; /* ガラスパネルの色味 */
+}
+
+.theme-sky {
+  --brand-50:  #f0f9ff;
+  --brand-100: #e0f2fe;
+  --brand-200: #bae6fd;
+  --brand-300: #7dd3fc;
+  --brand-400: #38bdf8;
+  --brand-500: #0ea5e9;
+  --brand-600: #0284c7;
+
+  --brand-rgb:       14, 165, 233;
+  --brand-soft-rgb:  125, 211, 252;
+  --brand-deep-rgb:  2, 132, 199;
+  --brand-tint-rgb:  186, 230, 253;
+  --brand-tint2-rgb: 165, 243, 252;
+  --brand-tint3-rgb: 191, 219, 254;
+  --brand-surface:   240, 249, 255;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }

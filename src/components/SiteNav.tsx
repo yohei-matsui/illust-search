@@ -14,9 +14,9 @@ export default function SiteNav({ current }: { current?: NavKey }) {
     <header
       className="sticky top-0 z-20 backdrop-blur-2xl border-b"
       style={{
-        background: "linear-gradient(135deg, rgba(255,255,255,0.55) 0%, rgba(255,240,245,0.45) 100%)",
+        background: "linear-gradient(135deg, rgba(255,255,255,0.55) 0%, rgba(var(--brand-surface),0.45) 100%)",
         borderColor: "rgba(255,255,255,0.5)",
-        boxShadow: "0 4px 24px rgba(236,72,153,0.08), inset 0 1px 0 rgba(255,255,255,0.7)",
+        boxShadow: "0 4px 24px rgba(var(--brand-rgb),0.08), inset 0 1px 0 rgba(255,255,255,0.7)",
       }}
     >
       <div className="max-w-screen-xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
@@ -27,7 +27,7 @@ export default function SiteNav({ current }: { current?: NavKey }) {
         <nav className="flex items-center gap-4 sm:gap-6 text-xs text-gray-400 font-medium">
           {ITEMS.map((item) =>
             item.key === current ? (
-              <span key={item.key} className="text-pink-400 font-semibold whitespace-nowrap">
+              <span key={item.key} className="text-[color:var(--brand-400)] font-semibold whitespace-nowrap">
                 {item.label}
               </span>
             ) : (

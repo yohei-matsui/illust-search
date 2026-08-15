@@ -194,17 +194,18 @@ function Badge({
 export default function PhotoIndexPage() {
   return (
     <div
-      className="flex flex-col min-h-screen bg-gradient-to-br from-pink-100 via-rose-50 to-purple-100"
+      className="flex flex-col min-h-screen"
       style={{
+        backgroundColor: "var(--brand-50)",
         backgroundImage:
-          "radial-gradient(ellipse at 20% 20%, rgba(251,207,232,0.6) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(216,180,254,0.4) 0%, transparent 50%)",
+          "radial-gradient(ellipse at 20% 20%, rgba(var(--brand-tint-rgb),0.6) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(var(--brand-tint2-rgb),0.4) 0%, transparent 50%)",
       }}
     >
       <SiteNav current="photo" />
 
       {/* ヒーロー */}
       <section className="max-w-screen-xl mx-auto w-full px-6 pt-12 pb-2">
-        <p className="text-xs font-semibold tracking-[0.2em] text-pink-400 uppercase mb-3">
+        <p className="text-xs font-semibold tracking-[0.2em] text-[color:var(--brand-400)] uppercase mb-3">
           Free Photo &amp; Video Sites
         </p>
         <h1 className="text-2xl sm:text-3xl font-black text-gray-800 tracking-tight leading-tight mb-3">
@@ -221,8 +222,8 @@ export default function PhotoIndexPage() {
           className="inline-flex items-center gap-2 mt-6 rounded-2xl px-5 py-3 text-sm font-bold text-white transition-all active:scale-95"
           style={{
             background:
-              "linear-gradient(135deg, rgba(249,168,212,0.9) 0%, rgba(236,72,153,0.95) 40%, rgba(219,39,119,0.9) 100%)",
-            boxShadow: "0 4px 20px rgba(236,72,153,0.35), inset 0 1px 0 rgba(255,255,255,0.4)",
+              "linear-gradient(135deg, rgba(var(--brand-soft-rgb),0.9) 0%, rgba(var(--brand-rgb),0.95) 40%, rgba(var(--brand-deep-rgb),0.9) 100%)",
+            boxShadow: "0 4px 20px rgba(var(--brand-rgb),0.35), inset 0 1px 0 rgba(255,255,255,0.4)",
           }}
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -238,7 +239,7 @@ export default function PhotoIndexPage() {
         <div
           className="rounded-2xl px-5 py-4 flex flex-wrap items-center gap-x-5 gap-y-2"
           style={{
-            background: "linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(255,245,250,0.5) 100%)",
+            background: "linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(var(--brand-surface),0.5) 100%)",
             border: "1px solid rgba(255,255,255,0.7)",
           }}
         >
@@ -273,10 +274,10 @@ export default function PhotoIndexPage() {
                   className="group flex flex-col rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1"
                   style={{
                     background:
-                      "linear-gradient(135deg, rgba(255,255,255,0.68) 0%, rgba(255,245,250,0.58) 100%)",
+                      "linear-gradient(135deg, rgba(255,255,255,0.68) 0%, rgba(var(--brand-surface),0.58) 100%)",
                     backdropFilter: "blur(20px) saturate(1.8)",
                     border: "1px solid rgba(255,255,255,0.78)",
-                    boxShadow: "0 2px 16px rgba(236,72,153,0.07), inset 0 1px 0 rgba(255,255,255,0.9)",
+                    boxShadow: "0 2px 16px rgba(var(--brand-rgb),0.07), inset 0 1px 0 rgba(255,255,255,0.9)",
                   }}
                 >
                   {/* ヘッダー */}
@@ -288,13 +289,13 @@ export default function PhotoIndexPage() {
                       {site.name.charAt(0).toUpperCase()}
                     </span>
                     <div className="min-w-0 flex-1">
-                      <p className="text-sm font-bold text-gray-800 truncate group-hover:text-pink-500 transition-colors">
+                      <p className="text-sm font-bold text-gray-800 truncate group-hover:text-[color:var(--brand-500)] transition-colors">
                         {site.name}
                       </p>
                       <p className="text-[10px] text-gray-400 truncate">{site.domain}</p>
                     </div>
                     <svg
-                      className="w-3.5 h-3.5 text-gray-200 group-hover:text-pink-300 shrink-0 transition-colors"
+                      className="w-3.5 h-3.5 text-gray-200 group-hover:text-[color:var(--brand-300)] shrink-0 transition-colors"
                       fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"
                     >
                       <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
@@ -340,8 +341,8 @@ export default function PhotoIndexPage() {
         <div
           className="rounded-2xl px-6 py-5 mb-8"
           style={{
-            background: "linear-gradient(135deg, rgba(255,255,255,0.65) 0%, rgba(255,240,250,0.55) 100%)",
-            border: "1px solid rgba(236,72,153,0.12)",
+            background: "linear-gradient(135deg, rgba(255,255,255,0.65) 0%, rgba(var(--brand-surface),0.55) 100%)",
+            border: "1px solid rgba(var(--brand-rgb),0.12)",
           }}
         >
           <p className="text-xs font-black text-gray-700 mb-2">利用前に必ず確認してください</p>
@@ -357,8 +358,8 @@ export default function PhotoIndexPage() {
         <div className="flex justify-center pb-4">
           <Link
             href="/photo/search"
-            className="flex items-center gap-2 rounded-full px-7 py-3 text-sm font-bold text-pink-500 transition-all hover:bg-pink-50"
-            style={{ border: "1.5px solid rgba(236,72,153,0.3)" }}
+            className="flex items-center gap-2 rounded-full px-7 py-3 text-sm font-bold text-[color:var(--brand-500)] transition-all hover:bg-[color:var(--brand-50)]"
+            style={{ border: "1.5px solid rgba(var(--brand-rgb),0.3)" }}
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
               <circle cx="11" cy="11" r="8" />

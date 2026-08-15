@@ -4,9 +4,29 @@ import { useState, FormEvent } from "react";
 
 type Props = {
   onSearch: (query: string) => void;
+  /** 上部の英字ラベル */
+  eyebrow?: string;
+  /** メイン見出し */
+  title?: string;
+  /** サービス名（ピンク太字） */
+  brand?: string;
+  /** 説明文（改行は \n で区切る） */
+  description?: string;
+  /** 検索欄のプレースホルダー */
+  placeholder?: string;
+  /** よく検索されるキーワード */
+  keywords?: string[];
 };
 
-export default function SearchBar({ onSearch }: Props) {
+export default function SearchBar({
+  onSearch,
+  eyebrow = "Free Illustration Search by RAKUPOCHI",
+  title = "フリーイラストをまとめて探す",
+  brand = "ラクポチ イラスト",
+  description = "いらすとや・ソコスト・Linustock など人気サイトを横断して検索！\n欲しい素材がきっと見つかります！",
+  placeholder = "キーワードを入力（例：ビジネス、家族、春）",
+  keywords = ["ビジネス", "家族", "季節", "アイコン"],
+}: Props) {
   const [value, setValue] = useState("");
 
   const handleSubmit = (e: FormEvent) => {
@@ -24,15 +44,19 @@ export default function SearchBar({ onSearch }: Props) {
       <div className="relative max-w-screen-xl mx-auto px-6 py-14">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold tracking-[0.2em] text-pink-400 uppercase mb-3">
-            Free Illustration Search by RAKUPOCHI
+            {eyebrow}
           </p>
           <h1 className="text-4xl font-black text-gray-900 leading-tight mb-1">
-            フリーイラストをまとめて探す
+            {title}
           </h1>
-          <p className="text-xl font-bold text-pink-500 mb-4">ラクポチ イラスト</p>
+          <p className="text-xl font-bold text-pink-500 mb-4">{brand}</p>
           <p className="text-sm text-gray-400 mb-8 leading-relaxed">
-            いらすとや・ソコスト・Linustock など人気サイトを横断して検索！<br />
-            欲しい素材がきっと見つかります！
+            {description.split("\n").map((line, i) => (
+              <span key={i}>
+                {line}
+                {i < description.split("\n").length - 1 && <br />}
+              </span>
+            ))}
           </p>
 
           <form onSubmit={handleSubmit} className="flex gap-3 w-full max-w-xl">
@@ -49,7 +73,7 @@ export default function SearchBar({ onSearch }: Props) {
                 type="text"
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
-                placeholder="キーワードを入力（例：ビジネス、家族、春）"
+                placeholder={placeholder}
                 className="w-full rounded-2xl pl-10 pr-4 py-3.5 text-sm text-gray-800 outline-none placeholder:text-gray-300 transition-all"
               style={{background: "rgba(255,255,255,0.55)", backdropFilter: "blur(20px) saturate(1.8)", border: "1px solid rgba(255,255,255,0.7)", boxShadow: "0 2px 16px rgba(236,72,153,0.08), inset 0 1px 0 rgba(255,255,255,0.8)"}}
               />
@@ -65,7 +89,7 @@ export default function SearchBar({ onSearch }: Props) {
 
           <div className="flex items-center gap-2 mt-5">
             <span className="text-xs text-gray-500">よく検索されるキーワード：</span>
-            {["ビジネス", "家族", "季節", "アイコン"].map((tag) => (
+            {keywords.map((tag) => (
               <button
                 key={tag}
                 type="button"

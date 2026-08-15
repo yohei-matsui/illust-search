@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SiteNav from "@/components/SiteNav";
 
 export const metadata = {
   title: "【これで差がつく】演出に使える動画編集のおすすめフォント11選 | デザインコラム | ラクポチ イラスト",
@@ -167,27 +168,7 @@ export default function RecommendedFontsPage() {
           "radial-gradient(ellipse at 20% 20%, rgba(251,207,232,0.6) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(216,180,254,0.4) 0%, transparent 50%)",
       }}
     >
-      {/* ヘッダー */}
-      <header
-        className="sticky top-0 z-20 backdrop-blur-2xl border-b"
-        style={{
-          background: "linear-gradient(135deg, rgba(255,255,255,0.55) 0%, rgba(255,240,245,0.45) 100%)",
-          borderColor: "rgba(255,255,255,0.5)",
-          boxShadow: "0 4px 24px rgba(236,72,153,0.08), inset 0 1px 0 rgba(255,255,255,0.7)",
-        }}
-      >
-        <div className="max-w-screen-xl mx-auto px-6 h-14 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5">
-            <img src="/favicon.svg" alt="ラクポチ イラスト" className="w-7 h-7" />
-            <span className="text-sm font-black text-gray-800 tracking-tight">ラクポチ イラスト</span>
-          </Link>
-          <nav className="hidden sm:flex items-center gap-6 text-xs text-gray-400 font-medium">
-            <Link href="/search" className="hover:text-gray-600 transition-colors">横断検索</Link>
-            <Link href="/" className="text-pink-400 font-semibold">デザインコラム</Link>
-            <Link href="/search#sites" className="hover:text-gray-600 transition-colors">サイト一覧</Link>
-          </nav>
-        </div>
-      </header>
+      <SiteNav current="column" />
 
       {/* パンくず */}
       <div className="max-w-screen-md mx-auto w-full px-6 pt-6">

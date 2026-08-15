@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 type Props = {
   sites: IllustSite[];
   onSearch: (query: string) => void;
+  /** グループ分けの定義。省略時はイラスト版（日本語／海外）の分け方 */
+  groups?: { label: string; ids: Set<string> }[];
 };
 
 // サイトごとのアクセントカラー
@@ -31,6 +33,27 @@ const ACCENT_COLORS: Record<string, string> = {
   storyset:     "bg-red-100 text-red-500",
   manypixels:   "bg-emerald-100 text-emerald-500",
   vectorshelf:  "bg-blue-100 text-blue-400",
+  // 画像・映像サイト
+  photo_ac:     "bg-sky-100 text-sky-500",
+  video_ac:     "bg-indigo-100 text-indigo-500",
+  pakutaso:     "bg-orange-100 text-orange-500",
+  photock:      "bg-teal-100 text-teal-500",
+  girlydrop:    "bg-pink-100 text-pink-500",
+  busitry:      "bg-slate-100 text-slate-500",
+  model_foto:   "bg-rose-100 text-rose-500",
+  food_foto:    "bg-amber-100 text-amber-500",
+  find47:       "bg-emerald-100 text-emerald-500",
+  skyseeker:    "bg-cyan-100 text-cyan-500",
+  unsplash:     "bg-gray-100 text-gray-600",
+  pexels:       "bg-green-100 text-green-500",
+  pixabay:      "bg-lime-100 text-lime-600",
+  freepik:      "bg-blue-100 text-blue-500",
+  kaboompics:   "bg-fuchsia-100 text-fuchsia-500",
+  burst:        "bg-violet-100 text-violet-500",
+  foodiesfeed:  "bg-yellow-100 text-yellow-600",
+  pixta:        "bg-red-100 text-red-500",
+  adobestock:   "bg-red-100 text-red-600",
+  istock:       "bg-purple-100 text-purple-500",
 };
 
 function SiteInitial({ site }: { site: IllustSite }) {
@@ -43,18 +66,29 @@ function SiteInitial({ site }: { site: IllustSite }) {
   );
 }
 
-export default function SiteShowcase({ sites, onSearch }: Props) {
-  // 日本語サイトと海外サイトに分ける
-  const overseasIds = new Set(["undraw", "storyset", "manypixels", "vectorshelf"]);
-  const japaneseSites = sites.filter((s) => !overseasIds.has(s.id));
-  const overseasSites = sites.filter((s) => overseasIds.has(s.id));
+export default function SiteShowcase({ sites, onSearch, groups }: Props) {
+  // groups 未指定なら従来どおり「日本語／海外」の2グループ
+  const resolved = groups ?? [
+    { label: "海外サイト", ids: new Set(["undraw", "storyset", "manypixels", "vectorshelf"]) },
+  ];
+
+  // 明示グループに属さないものは先頭グループ（＝日本語サイト）へ
+  const assignedIds = new Set(resolved.flatMap((g) => [...g.ids]));
+  const rest = sites.filter((s) => !assignedIds.has(s.id));
+  const restLabel = groups ? "日本語・無料サイト" : "日本語サイト";
 
   return (
     <div className="w-full">
-      <SiteGroup label="日本語サイト" sites={japaneseSites} onSearch={onSearch} />
-      {overseasSites.length > 0 && (
-        <SiteGroup label="海外サイト" sites={overseasSites} onSearch={onSearch} />
+      {rest.length > 0 && (
+        <SiteGroup label={restLabel} sites={rest} onSearch={onSearch} />
       )}
+      {resolved.map((g) => {
+        const groupSites = sites.filter((s) => g.ids.has(s.id));
+        if (groupSites.length === 0) return null;
+        return (
+          <SiteGroup key={g.label} label={g.label} sites={groupSites} onSearch={onSearch} />
+        );
+      })}
     </div>
   );
 }

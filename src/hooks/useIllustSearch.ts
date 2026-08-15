@@ -11,7 +11,10 @@ type SearchState =
 
 const PER_PAGE = 100; // SerpAPI Google Images が1ページで返す件数の目安
 
-export function useIllustSearch(enabledSiteIds: Set<string>) {
+export function useIllustSearch(
+  enabledSiteIds: Set<string>,
+  apiPath: string = "/api/search"
+) {
   const [state, setState] = useState<SearchState>({ status: "idle" });
   const currentQuery = useRef("");
 
@@ -28,7 +31,7 @@ export function useIllustSearch(enabledSiteIds: Set<string>) {
       try {
         const sites = [...enabledSiteIds].join(",");
         const res = await fetch(
-          `/api/search?q=${encodeURIComponent(query)}&sites=${encodeURIComponent(sites)}&page=${page}`
+          `${apiPath}?q=${encodeURIComponent(query)}&sites=${encodeURIComponent(sites)}&page=${page}`
         );
         const json = await res.json();
 
@@ -53,7 +56,7 @@ export function useIllustSearch(enabledSiteIds: Set<string>) {
         });
       }
     },
-    [enabledSiteIds]
+    [enabledSiteIds, apiPath]
   );
 
   const search = useCallback(

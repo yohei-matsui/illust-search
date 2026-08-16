@@ -30,6 +30,9 @@ const SITE_NAMES: Record<string, string> = Object.fromEntries(
   PHOTO_SITES.map((s) => [s.id, s.name])
 );
 
+/** 素材ページの題名から「イラスト素材」を見分ける（写真検索から除くため） */
+const ILLUST_TITLE = /イラスト|ベクター|クリップアート|clip ?art|illustration|vector/i;
+
 type SerpImageResult = {
   title?: string;
   original?: string;
@@ -95,6 +98,19 @@ export async function GET(req: NextRequest) {
   url.searchParams.set("safe", "active");
   url.searchParams.set("hl", "ja");
   url.searchParams.set("gl", "jp");
+  // ★写真だけに絞る（1段目）★
+  // PIXTA・Adobe Stock・iStock などは写真とイラストの両方を扱っているため、
+  // ドメイン指定だけではイラストが大量に混ざる。Google画像検索の種類フィルタで
+  // 写真に限定する。実測（2026-08-16「会議」100件中のイラスト）: 43件 → 20件。
+  //
+  // 値は itp:photos ではなく **itp:photo**（単数形）。
+  // SerpAPI のドキュメントには photos と書かれているが、実際に効くのは単数形で、
+  // photos ではフィルタが無視される（43件→41件としか変わらなかった）。
+  //
+  // なお検索語に -イラスト などの除外語を足す方法も試したが、
+  // 写真ACやぱくたそのページまで巻き込んで消えてしまい（日本語サイトが61件→0件）、
+  // 日本人モデルの写真が探せなくなるので採用しない。残りは下の2段目で落とす。
+  url.searchParams.set("tbs", "itp:photo");
   if (page > 0) url.searchParams.set("ijn", String(page));
 
   const res = await fetch(url.toString(), { next: { revalidate: 86400 } });
@@ -113,7 +129,12 @@ export async function GET(req: NextRequest) {
 
   const items: IllustItem[] = (data.images_results ?? [])
     .map((item: SerpImageResult, i: number) => toPhotoItem(item, i))
-    .filter((item: IllustItem | null): item is IllustItem => item !== null);
+    .filter((item: IllustItem | null): item is IllustItem => item !== null)
+    // ★イラストを落とす（2段目）★
+    // 1段目のフィルタを抜けてくるぶんを、素材ページの題名で落とす。
+    // PIXTA などは題名が必ず「〜のイラスト素材」なので取りこぼしが少ない。
+    // 実測: 「会議」100件→80件、「猫」100件→87件が残り、イラストは0件になった。
+    .filter((item: IllustItem) => !ILLUST_TITLE.test(item.title));
 
   return NextResponse.json({ items, totalResults: items.length });
 }

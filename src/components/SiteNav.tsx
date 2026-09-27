@@ -5,7 +5,7 @@ export type NavKey = "column" | "illust" | "photo";
 const ITEMS: { key: NavKey; href: string; label: string }[] = [
   { key: "column", href: "/", label: "デザインコラム" },
   { key: "illust", href: "/search", label: "イラスト検索" },
-  { key: "photo", href: "/photo", label: "画像・映像検索" },
+  { key: "photo", href: "/photo/search", label: "画像・映像検索" },
 ];
 
 /** 全ページ共通のヘッダー。current で現在地をハイライトする */

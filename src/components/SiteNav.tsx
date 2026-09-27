@@ -25,7 +25,7 @@ export default function SiteNav({ current }: { current?: NavKey }) {
           <span className="text-sm font-black text-gray-800 tracking-tight">ラクポチ</span>
         </Link>
         <nav className="flex items-center gap-4 sm:gap-6 text-xs text-gray-400 font-medium">
-          {ITEMS.map((item) =>
+          {ITEMS.filter((item) => !(item.key === "column" && (current === "illust" || current === "photo"))).map((item) =>
             item.key === current ? (
               <span key={item.key} className="text-[color:var(--brand-400)] font-semibold whitespace-nowrap">
                 {item.label}

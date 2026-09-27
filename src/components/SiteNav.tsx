@@ -20,7 +20,10 @@ export default function SiteNav({ current }: { current?: NavKey }) {
       }}
     >
       <div className="max-w-screen-xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2.5 shrink-0">
+        <Link
+          href={current === "illust" || current === "photo" ? ITEMS.find((i) => i.key === current)!.href : "/"}
+          className="flex items-center gap-2.5 shrink-0"
+        >
           <img src="/favicon.svg" alt="ラクポチ" className="w-7 h-7" />
           <span className="text-sm font-black text-gray-800 tracking-tight">ラクポチ</span>
         </Link>
